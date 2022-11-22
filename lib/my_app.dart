@@ -1,3 +1,4 @@
+import 'package:aula02/pages/home_page.dart';
 import 'package:aula02/pages/login_page.dart';
 import 'package:aula02/pages/register_page.dart';
 import 'package:flutter/material.dart';

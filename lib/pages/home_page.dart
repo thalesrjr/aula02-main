@@ -25,7 +25,7 @@ class _HomePageState extends State<HomePage> {
         child: ListView(
           padding: EdgeInsets.zero,
           children: [
-            UserAccountsDrawerHeader(
+            const UserAccountsDrawerHeader(
               accountName: Text("tj2930"),
               accountEmail: Text("thelesrjr5@gmail.com"),
               currentAccountPicture: CircleAvatar(
@@ -33,16 +33,18 @@ class _HomePageState extends State<HomePage> {
               ),
             ),
             ListTile(
-              leading: Icon(Icons.book),
-              title: Text("termos e obrigaçôes"),
+              leading: const Icon(Icons.book),
+              title: const Text("termos e obrigaçôes"),
               onTap: () {
                 Navigator.of(context).push(MaterialPageRoute(
-                    builder: (context) => TermsPage(title: "leis")));
+                    builder: (context) => const TermsPage(title: "leis")));
               },
             )
           ],
         ),
       ),
+
+      // bottomNavigationBar:  ,book)
       body: Center(
         child: Padding(
           padding: const EdgeInsets.all(48.0),
@@ -71,11 +73,33 @@ class _HomePageState extends State<HomePage> {
                     Icon(Icons.logout, color: Colors.blue),
                   ],
                 ),
-              )
+              ),
             ],
           ),
         ),
       ),
+      floatingActionButton: FloatingActionButton(
+        child: const Icon(Icons.add),
+        backgroundColor: Colors.blue,
+        onPressed: () {},
+      ),
+      bottomNavigationBar: BottomNavigationBar(
+          backgroundColor: Colors.blue,
+          currentIndex: 0,
+          items: const <BottomNavigationBarItem>[
+            BottomNavigationBarItem(
+                icon: Icon(
+                  Icons.book_online,
+                  color: Colors.black,
+                ),
+                label: "loco"),
+            BottomNavigationBarItem(
+                icon: Icon(
+                  Icons.person,
+                  color: Colors.black,
+                ),
+                label: "topa"),
+          ]),
     );
   }
 }
