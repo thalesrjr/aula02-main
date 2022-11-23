@@ -5,9 +5,10 @@ import 'package:aula02/utils/widget/text_form_field_custom.dart';
 import 'package:flutter/material.dart';
 
 class ResetPage extends StatefulWidget {
-  const ResetPage({super.key, required this.title});
+  ResetPage({super.key, required this.title, required this.isReset});
 
   final String title;
+  bool isReset = true;
 
   @override
   State<ResetPage> createState() => _ResetPageState();
@@ -59,21 +60,25 @@ class _ResetPageState extends State<ResetPage> {
                 ),
               ),
               const SizedBox(height: 25),
-              TextFormFieldCustom(
-                obscureText: obscureText,
-                description: 'Repetir a senha',
-                prefixIcon: const Icon(Icons.key, color: Colors.blue),
-                suffixIcon: IconButton(
-                  onPressed: () {
-                    setState(() {
-                      obscureText = !obscureText;
-                    });
-                  },
-                  icon: Icon(
-                      obscureText ? Icons.visibility_off : Icons.visibility,
-                      color: Colors.blue),
-                ),
-              ),
+              widget.isReset
+                  ? TextFormFieldCustom(
+                      obscureText: obscureText,
+                      description: 'Repetir a senha',
+                      prefixIcon: const Icon(Icons.key, color: Colors.blue),
+                      suffixIcon: IconButton(
+                        onPressed: () {
+                          setState(() {
+                            obscureText = !obscureText;
+                          });
+                        },
+                        icon: Icon(
+                            obscureText
+                                ? Icons.visibility_off
+                                : Icons.visibility,
+                            color: Colors.blue),
+                      ),
+                    )
+                  : SizedBox(),
               const SizedBox(
                 height: 10,
               ),

@@ -2,6 +2,7 @@ import 'package:aula02/pages/terms_page.dart';
 import 'package:flutter/material.dart';
 
 import 'login_page.dart';
+import 'reset_page.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key, required this.title});
@@ -38,6 +39,17 @@ class _HomePageState extends State<HomePage> {
               onTap: () {
                 Navigator.of(context).push(MaterialPageRoute(
                     builder: (context) => const TermsPage(title: "leis")));
+              },
+            ),
+            ListTile(
+              leading: const Icon(Icons.book),
+              title: const Text("Alterar senha"),
+              onTap: () {
+                Navigator.of(context).push(MaterialPageRoute(
+                    builder: (context) => ResetPage(
+                          title: "Alterar Senha",
+                          isReset: false,
+                        )));
               },
             )
           ],
@@ -85,7 +97,7 @@ class _HomePageState extends State<HomePage> {
       ),
       bottomNavigationBar: BottomNavigationBar(
           backgroundColor: Colors.blue,
-          currentIndex: 0,
+          currentIndex: 1,
           items: const <BottomNavigationBarItem>[
             BottomNavigationBarItem(
                 icon: Icon(

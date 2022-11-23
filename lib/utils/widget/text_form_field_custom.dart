@@ -23,6 +23,11 @@ class _TextFormFieldCustomState extends State<TextFormFieldCustom> {
   Widget build(BuildContext context) {
     return TextFormField(
       obscureText: widget.obscureText ?? false,
+      validator: (value) {
+        if (value!.length > 10) {
+          "retorno";
+        }
+      },
       decoration: InputDecoration(
           border: const OutlineInputBorder(),
           prefixIcon: widget.prefixIcon,

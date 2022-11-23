@@ -16,6 +16,9 @@ class LoginPage extends StatefulWidget {
 
 class _LoginPageState extends State<LoginPage> {
   bool obscureText = true;
+  double altura = 300;
+  double largura = 200;
+  bool click = false;
 
   @override
   Widget build(BuildContext context) {
@@ -37,9 +40,31 @@ class _LoginPageState extends State<LoginPage> {
               const Text("Faça login para continuar"),
               //Image.network(src)
               const SizedBox(height: 50),
-              const Icon(Icons.account_circle,
-                  size: 100.50, color: Colors.blue),
-              const SizedBox(height: 50),
+              GestureDetector(
+                onTap: () {
+                  setState(() {
+                    click = !click;
+                    if (click) {
+                      altura = 400;
+                      largura = 300;
+                    } else {
+                      altura = 300;
+                      largura = 200;
+                    }
+                  });
+                },
+                child: SizedBox(
+                  height: altura,
+                  width: largura,
+                  child: Image.network(
+                      "https://www.cnnbrasil.com.br/esporte/neymar-acusa-nike-de-mentira-e-diz-que-nao-pode-se-defender/",
+                      fit: BoxFit.fill),
+                ),
+              ),
+
+              const SizedBox(
+                height: 20,
+              ),
 
               TextFormFieldCustom(
                 description: 'E-mail',
@@ -70,8 +95,10 @@ class _LoginPageState extends State<LoginPage> {
                   GestureDetector(
                     onTap: () {
                       Navigator.of(context).push(MaterialPageRoute(
-                          builder: ((context) =>
-                              const ResetPage(title: "RESETAR"))));
+                          builder: ((context) => ResetPage(
+                                title: "RESETAR",
+                                isReset: true,
+                              ))));
                     },
                     child: const Text(
                       "Esqueceu a senha?",
