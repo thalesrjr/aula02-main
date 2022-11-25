@@ -1,5 +1,6 @@
 import 'package:aula02/pages/terms_page.dart';
 import 'package:flutter/material.dart';
+import 'package:salomon_bottom_bar/salomon_bottom_bar.dart';
 
 import 'login_page.dart';
 import 'reset_page.dart';
@@ -14,6 +15,8 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  int _currentIndex = 0;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -58,60 +61,84 @@ class _HomePageState extends State<HomePage> {
 
       // bottomNavigationBar:  ,book)
       body: Center(
-        child: Padding(
-          padding: const EdgeInsets.all(48.0),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              const Text(
-                "Bem-Vindo usuário",
-                style: TextStyle(
-                  fontSize: 22,
-                ),
-              ),
-              const SizedBox(
-                height: 50,
-              ),
-              GestureDetector(
-                onTap: () {
-                  Navigator.of(context).push(MaterialPageRoute(
-                    builder: (context) => const LoginPage(title: "Login"),
-                  ));
-                },
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: const [
-                    Text("Clique aqui para sair..."),
-                    Icon(Icons.logout, color: Colors.blue),
-                  ],
-                ),
-              ),
-            ],
+        child: ListView(children: const [
+          SizedBox(
+            height: 20,
           ),
-        ),
+          Card(
+            child: ListTile(
+              leading: CircleAvatar(
+                backgroundColor: Colors.blue,
+                child: Text("S"),
+              ),
+              title: Text("Pessoa"),
+              subtitle: Text("Descriçao"),
+              trailing: Icon(Icons.arrow_right),
+            ),
+          ),
+          Card(
+            child: ListTile(
+              leading: CircleAvatar(
+                backgroundColor: Colors.blue,
+                child: Text("S"),
+              ),
+              title: Text("Pessoa"),
+              subtitle: Text("Descriçao"),
+              trailing: Icon(Icons.arrow_right),
+            ),
+          ),
+          Card(
+            child: ListTile(
+              leading: CircleAvatar(
+                backgroundColor: Colors.blue,
+                child: Text("S"),
+              ),
+              title: Text("Pessoa"),
+              subtitle: Text("Descriçao"),
+              trailing: Icon(Icons.arrow_right),
+            ),
+          )
+        ]),
       ),
+
       floatingActionButton: FloatingActionButton(
         child: const Icon(Icons.add),
         backgroundColor: Colors.blue,
         onPressed: () {},
       ),
-      bottomNavigationBar: BottomNavigationBar(
-          backgroundColor: Colors.blue,
-          currentIndex: 1,
-          items: const <BottomNavigationBarItem>[
-            BottomNavigationBarItem(
-                icon: Icon(
-                  Icons.book_online,
-                  color: Colors.black,
-                ),
-                label: "loco"),
-            BottomNavigationBarItem(
-                icon: Icon(
-                  Icons.person,
-                  color: Colors.black,
-                ),
-                label: "topa"),
-          ]),
+      bottomNavigationBar: SalomonBottomBar(
+        currentIndex: _currentIndex,
+        onTap: (i) => setState(() => _currentIndex = i),
+        items: [
+          /// Home
+          SalomonBottomBarItem(
+            icon: const Icon(Icons.home),
+            title: const Text("Home"),
+            selectedColor: Colors.purple,
+          ),
+
+          /// Likes
+          SalomonBottomBarItem(
+            icon: const Icon(Icons.favorite_border),
+            title: const Text("Likes"),
+            selectedColor: Colors.pink,
+          ),
+
+          /// Search
+          SalomonBottomBarItem(
+            icon: const Icon(Icons.search),
+            title: const Text("Search"),
+            selectedColor: Colors.orange,
+          ),
+
+          /// Profile
+          SalomonBottomBarItem(
+            icon: const Icon(Icons.person),
+            title: const Text("Profile"),
+            selectedColor: Colors.teal,
+          ),
+        ],
+      ),
     );
   }
 }
